@@ -1,0 +1,191 @@
+body {
+    font-family: Verdana;
+    font-size: 13px;
+    background: #2F3A3C;
+    color: #1A1A1A;
+    padding-top: 10px;
+}
+
+li {
+  list-style-image: url(list_arrow.gif);
+  padding-top: 0px;
+}
+
+.download li {
+  list-style-image: url(list_arrow.gif);
+  padding-top: 3px;
+}
+
+.content {
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.content li {
+  list-style-image: url(list_arrow.gif);
+  padding-top: 2px;
+}
+
+h2 {
+    font-family: Arial;
+    font-size: 20px;
+}
+
+h3 {
+    font-size: 11pt;
+}
+
+.firstword {
+    color: #CC720D;
+}
+
+.vertspace {
+    height: 20px;
+}
+
+.logo {
+    padding-top:10px;
+    padding-left:20px;
+}
+
+.whole {
+    width: 800px;
+    background: white;
+    font-size: 12px;
+}
+
+a {
+    color: #AC600B;
+} 
+
+.header {
+    background-image: url(../img/line.jpg);
+}
+
+.menu {
+    font-family: Arial;
+    padding: 12px;
+    border-right: #AAAAAA 2px dotted;
+}
+
+.menurow {
+    font-size:11pt;
+    cursor: default;
+}
+
+.menurowover {
+    font-size:11pt;
+    background: #DDDDDD;
+    cursor: default; 
+}
+
+.menuitem {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 2px;
+    padding-right: 2px;
+    border-bottom: #AAAAAA 2px dotted;
+}
+
+.menuline{
+  border-bottom: #AAAAAA 2px dotted;
+}
+
+.menulinestart {
+  border-bottom: #AAAAAA 2px dotted;
+}
+
+.menulinesel{
+  border-bottom: #000000 2px dotted;
+}
+
+.menuitem2 {
+    font-size:11pt;
+    color: #777777;
+}
+
+.menuitem2sel {
+    font-size:11pt;
+    color: #F38F20;
+}
+
+.menu a {
+    color: navy;
+    text-decoration: none;
+} 
+
+.menu a:hover {
+    color: navy;
+    text-decoration: underline;
+} 
+
+.main {
+    padding-top: 2px;
+    padding-left:10px;
+    padding-right:10px;
+    padding-bottom:10px;
+}
+
+
+.banners {
+    padding-left: 10px;
+}
+
+.element_desc table {
+    width: 540px;
+    border-collapse: collapse;
+    border: 1px solid #bbbbbb;
+    font-size: 11px;
+}
+
+.element_desc th {
+    border: 1px solid #bbbbbb;
+    text-align: left;
+    background: #DDDDDD;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.element_desc td {
+    border: 1px solid #bbbbbb;
+    padding: 3px;
+}
+
+.code {
+    margin-left: 20px;
+    margin-right: 20px;
+	background-color: #F1F1F1;
+	border: 1px solid #AAAAAA;
+	overflow: auto;
+	overflow-y: hidden;
+	width: 570px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+.licence {
+    border: 1px solid #888888;
+}
+
+.footer {
+    top-padding: 20px;
+    font-size: 11px;
+    background-color: #2F3A3C;
+    color: #AAAAAA;
+}
+
+.news{
+    border: 1px dashed #bbbbbb;
+    font-size: 11px;
+    padding: 3px;
+    background: #EFEDD1;
+}
+
+.new {
+    font-family:Verdana;
+    vertical-align: super;
+    font-size:8px;
+    font-weight:bold;
+    color:red;    
+}
