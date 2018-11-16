@@ -13,15 +13,13 @@ import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 
 import javax.xml.parsers.ParserConfigurationException;
+import java.io.BufferedReader;
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.charset.StandardCharsets;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.*;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Scanner;
 
 
 /**
@@ -44,13 +42,13 @@ public class HtmlRenderTool {
      * Convert CSS Html Page to inline style
      *
      * @param html     html source page
-     * @param fileBase html page parent url
+     * @param cssLoader load css from <link rel="stylesheet" type="text/css" href="xxx">
      * @return
      * @throws IOException
      * @throws ParserConfigurationException
      * @throws CSSException
      */
-    public static String renderHtmlPage(String html, URL fileBase) throws IOException, ParserConfigurationException, CSSException {
+    public static String renderHtmlPage(String html, CssLoader cssLoader) throws Exception {
         org.jsoup.nodes.Document doc = Jsoup.parse(html);
         long level = 0;
         int index = 0;
@@ -72,7 +70,7 @@ public class HtmlRenderTool {
             String tag = el.tagName();
             String rawStyleRules = null;
             if ("link".equalsIgnoreCase(tag)) {
-                rawStyleRules = loadCssFromLink(fileBase, el);
+                rawStyleRules = loadCssFromLink(cssLoader, el);
             } else {
                 rawStyleRules = el.getAllElements().get(0).data();
             }
@@ -112,20 +110,17 @@ public class HtmlRenderTool {
         return result;
     }
 
-    private static String loadCssFromLink(URL fileBase, Element el) throws MalformedURLException {
-        String rawStyleRules;
-        String href = el.attr("href");
-        URL cssUrl = null;
-        if (href.startsWith("http")) {
-            cssUrl = new URL(href);
-        } else {
-            if (fileBase != null) {
-                cssUrl = new URL(fileBase, href);
-            }
+    private static String loadCssFromLink(CssLoader cssLoader, Element el) throws Exception {
+        if(cssLoader==null){
+            return null;
         }
-        rawStyleRules = readStringFromURL(cssUrl);
+        String href = el.attr("href");
+        String rawStyleRules=cssLoader.loadCss(href);
         return rawStyleRules;
     }
+
+
+
 
     private static void buildKey(String parentKey, long level, int index, Element element, Map<String, Element> elementMap) {
         String key = String.format("%s_%d.%d", parentKey, level, index);
@@ -144,21 +139,8 @@ public class HtmlRenderTool {
     }
 
 
-    public static String readStringFromURL(URL requestURL) {
-        String content = null;
-        try {
-            content = IOUtils.toString(requestURL, "utf-8");
-        } catch (IOException e) {
-            return content;
-        }
-        return content;
-    }
 
-    public static String renderHtmlPage(URL url) throws Exception {
-        String html = readStringFromURL(url);
-        URI uri = url.toURI();
-        URI parent = uri.getPath().endsWith("/") ? uri.resolve("..") : uri.resolve(".");
-        URL pUrl = new URL(parent.toString());
-        return renderHtmlPage(html, pUrl);
-    }
+
+
+
 }
